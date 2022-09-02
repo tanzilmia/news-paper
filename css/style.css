@@ -36,3 +36,17 @@ a{
     border: 1px solid rgb(250, 233, 233);
     border-radius: 50px;
 }
+.author_img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
+.author{
+    display: flex;
+    align-items: center;
+   
+}
+.author p{
+    margin-left: 15px;
+    font-size: 14px;
+}
