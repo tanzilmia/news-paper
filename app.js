@@ -1,5 +1,4 @@
 // load all categories 
-
 const loadCataGories = () =>{
     let url = `https://openapi.programming-hero.com/api/news/categories`
         fetch(url)
@@ -10,7 +9,6 @@ const loadCataGories = () =>{
 }
 
 // shwo default data on ui
-
 let dafaultCatagorie = () =>{
     let url = `https://openapi.programming-hero.com/api/news/category/01`
         fetch(url)
@@ -19,46 +17,24 @@ let dafaultCatagorie = () =>{
         // simple error handeling
         .catch(error => console.log(error))
 }
-
 // call default Categories
 dafaultCatagorie()
 
+// set dynamic nav items on navbar 
 const Navbar = (navitems) =>{
     const ul = document.getElementById('ulwrapping')
     navitems.forEach(item =>{
-        // console.log(item.category_name)
         let li = document.createElement('li')
             li.classList.add('nav-item')
             li.innerHTML = `
             <a onclick="categoriyes('${item.category_id}')"  class="nav-link active" aria-current="page" href="#">${item.category_name}</a>
             `
-            ul.appendChild(li)
-           
+            ul.appendChild(li) 
     })
     
-   
 }
 
-
-
-
-// function btnClick(btn){
-//     let players = btn.parentNode.children[0].innerText
-//     let li = document.createElement('li')
-//     Orderlist.appendChild(li)
-//     let ListLength = Orderlist.children.length
-//     if(ListLength >=6){
-//         li.remove()
-//         alert('you can select just 5 players')
-//     }else{
-//         li.innerText = players
-//         btn.setAttribute('disabled', '');
-//     }
-// }
-   
-
-// catetories data load function 
-
+// all cetegories  functionality 
 const categoriyes = (cetagoriesId) =>{
     let url = `https://openapi.programming-hero.com/api/news/category/${cetagoriesId}`
         fetch(url)
@@ -67,10 +43,9 @@ const categoriyes = (cetagoriesId) =>{
         // simple error handeling
         .catch(error => console.log(error))
 }
-
+// categories details 
 const CetegoriesDetails = (newsCards) =>{
     loading(true)
-    
     let totalNewsItem = newsCards.length
     let Itemshowing = document.getElementById('item_showing')
         Itemshowing.innerHTML = ' '
@@ -78,12 +53,12 @@ const CetegoriesDetails = (newsCards) =>{
         h4.innerText = ` ${totalNewsItem} items found for This Categorys`
         Itemshowing.appendChild(h4)
     let parentDiv = document.getElementById('cardParents')
-    
         parentDiv.innerHTML = ' '
-
-    newsCards.forEach(news =>{
-        console.log(news)
-
+        // sorting the arry by total number
+    let NewsShorting =  newsCards.sort(function(a,b){
+            return b.total_view - a.total_view
+    })
+    NewsShorting.forEach(news =>{
         let div = document.createElement('div')
             div.classList.add('col')
             div.innerHTML = `
@@ -113,11 +88,7 @@ const CetegoriesDetails = (newsCards) =>{
     
     loading(false)
 }
-
-
-
 // details info 
-
 const DetailsInfo = (NewsId) =>{
     let url = `https://openapi.programming-hero.com/api/news/${NewsId}`
         fetch(url)
@@ -127,15 +98,6 @@ const DetailsInfo = (NewsId) =>{
 }
 
 const DetailsInfoInModal = (cardInfo) =>{
-    // console.log()
-    // console.log(cardInfo.total_view)
-    // console.log()
-    // console.log()
-    // console.log()
-    // console.log()
-
-
-    // cardInfo.thumbnail_url
 let modalBody = document.getElementById('modal_info')
     modalBody.innerHTML = `
     <img src="${cardInfo.thumbnail_url}" alt="">
@@ -143,15 +105,9 @@ let modalBody = document.getElementById('modal_info')
     <p>${cardInfo.details}</p>
     <p>Author : ${cardInfo.author.name ? cardInfo.author.name : "No data"}</p>
     <p>Publish Date : ${cardInfo.author.published_date ? cardInfo.author.published_date : "No Data"}</p>
-    
-    
-
-    
     `
-
 }
 // spinner loading 
-
     let loading = (isLoading) =>{
         let spinnner = document.getElementById('customSpinner')
         if(isLoading){
@@ -162,16 +118,6 @@ let modalBody = document.getElementById('modal_info')
     }
 
 loadCataGories()
-
-
-
-// 
-// "thumbnail_url": "https://i.ibb.co/QnwC4sG/unsplash-Eh-Tc-C9s-YXsw-11.png",
-// "image_url": "https://i.ibb.co/M23fhxm/unsplash-Eh-Tc-C9s-YXsw.png",
-
-
-
-
 
 
 
