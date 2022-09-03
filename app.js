@@ -9,7 +9,7 @@ const loadCataGories = () =>{
 }
 
 // shwo default data on ui
-let dafaultCatagorie = () =>{
+const dafaultCatagorie = () =>{
     let url = `https://openapi.programming-hero.com/api/news/category/01`
         fetch(url)
         .then(res => res.json())
@@ -108,7 +108,7 @@ let modalBody = document.getElementById('modal_info')
     `
 }
 // spinner loading 
-    let loading = (isLoading) =>{
+const loading = (isLoading) =>{
         let spinnner = document.getElementById('customSpinner')
         if(isLoading){
             spinnner.classList.remove('d-none')
