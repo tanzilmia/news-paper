@@ -9,6 +9,20 @@ const loadCataGories = () =>{
         .catch(error => console.log(error))
 }
 
+// shwo default data on ui
+
+let dafaultCatagorie = () =>{
+    let url = `https://openapi.programming-hero.com/api/news/category/01`
+        fetch(url)
+        .then(res => res.json())
+        .then(data => CetegoriesDetails(data.data))
+        // simple error handeling
+        .catch(error => console.log(error))
+}
+
+// call default Categories
+dafaultCatagorie()
+
 const Navbar = (navitems) =>{
     const ul = document.getElementById('ulwrapping')
     navitems.forEach(item =>{
@@ -127,8 +141,10 @@ let modalBody = document.getElementById('modal_info')
     <img src="${cardInfo.thumbnail_url}" alt="">
     <h4>${cardInfo.title}</h4>
     <p>${cardInfo.details}</p>
-    <p>Author : ${cardInfo.author.name}</p>
-    <p>Publish Date : ${cardInfo.author.published_date}</p>
+    <p>Author : ${cardInfo.author.name ? cardInfo.author.name : "No data"}</p>
+    <p>Publish Date : ${cardInfo.author.published_date ? cardInfo.author.published_date : "No Data"}</p>
+    
+    
 
     
     `
