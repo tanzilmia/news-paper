@@ -65,7 +65,7 @@ const CetegoriesDetails = (newsCards) =>{
             <div class="card h-100">
             <img src="${news.image_url}" class="card-img-top card_img" alt="...">
             <div class="card-body">
-              <h5 class="card-title">${news.title}</h5>
+              <h5 class="card-title text-muted">${news.title}</h5>
               <p class="card-text">${news.details.slice(0,150)} ...</p>
               <div class="author_info">
                 <div class="author">
