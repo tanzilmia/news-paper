@@ -17,6 +17,10 @@
 </head>
 <body>
 
+
+  <!-- spinner -->
+
+
     <!-- header section  -->
     
     <header class="container">
@@ -33,7 +37,7 @@
 
         <!-- dynamic navbar  -->
 
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,14 +50,26 @@
             </div>
           </nav>
 
+          <!--  how many item showing -->
+
+          <div class="bg-light p-3" id="item_showing">
+          </div>
+
     </header>
 
+
+      
     
     <!-- shwo all card here  -->
 
     <section class="container">
         <div id="cardParents" class="row row-cols-1 row-cols-md-3 g-4">
           <!-- dynamic card will shwo here -->
+          </div>
+          <div id="customSpinner" class="d-flex justify-content-center customSpinner d-none">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
           </div>
     </section>
 
