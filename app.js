@@ -16,7 +16,7 @@ const Navbar = (navitems) =>{
         let li = document.createElement('li')
             li.classList.add('nav-item')
             li.innerHTML = `
-            <a onclick="categoriyes('${item.category_id}')" class="nav-link active cetegories_name" aria-current="page" href="#">${item.category_name}</a>
+            <a onclick="categoriyes('${item.category_id}')"  class="nav-link active" aria-current="page" href="#">${item.category_name}</a>
             `
             ul.appendChild(li)
            
@@ -54,9 +54,6 @@ const categoriyes = (cetagoriesId) =>{
         .catch(error => console.log(error))
 }
 
-let Name = document.getElementsByClassName('cetegories_name')
-
-
 const CetegoriesDetails = (newsCards) =>{
     loading(true)
     
@@ -64,22 +61,20 @@ const CetegoriesDetails = (newsCards) =>{
     let Itemshowing = document.getElementById('item_showing')
         Itemshowing.innerHTML = ' '
         let h4 = document.createElement('h4')
-        h4.innerText = ` ${totalNewsItem} items found for category Entertainment`
+        h4.innerText = ` ${totalNewsItem} items found for This Categorys`
         Itemshowing.appendChild(h4)
     let parentDiv = document.getElementById('cardParents')
     
         parentDiv.innerHTML = ' '
 
-        console.log(newsCards)
-
     newsCards.forEach(news =>{
-        // console.log(news)
+        console.log(news)
 
         let div = document.createElement('div')
             div.classList.add('col')
             div.innerHTML = `
             <div class="card h-100">
-            <img src="${news.thumbnail_url}" class="card-img-top card_img" alt="...">
+            <img src="${news.image_url}" class="card-img-top card_img" alt="...">
             <div class="card-body">
               <h5 class="card-title">${news.title}</h5>
               <p class="card-text">${news.details.slice(0,150)} ...</p>
@@ -94,7 +89,7 @@ const CetegoriesDetails = (newsCards) =>{
                 </div>
                 <li><i class="fa fa-eye text-success" aria-hidden="true"></i> <span>${news.total_view ? news.total_view : "No Data"}</span></li>
             </div>
-            <button class="btn btn-primary">See More</button>
+            <button  onclick="DetailsInfo('${news._id}')"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">See More</button>
             </div>
             
           </div>
@@ -105,6 +100,40 @@ const CetegoriesDetails = (newsCards) =>{
     loading(false)
 }
 
+
+
+// details info 
+
+const DetailsInfo = (NewsId) =>{
+    let url = `https://openapi.programming-hero.com/api/news/${NewsId}`
+        fetch(url)
+        .then(res => res.json())
+        .then(data => DetailsInfoInModal(data.data[0]))
+        .catch(error => console.log(error))
+}
+
+const DetailsInfoInModal = (cardInfo) =>{
+    // console.log()
+    // console.log(cardInfo.total_view)
+    // console.log()
+    // console.log()
+    // console.log()
+    // console.log()
+
+
+    // cardInfo.thumbnail_url
+let modalBody = document.getElementById('modal_info')
+    modalBody.innerHTML = `
+    <img src="${cardInfo.thumbnail_url}" alt="">
+    <h4>${cardInfo.title}</h4>
+    <p>${cardInfo.details}</p>
+    <p>Author : ${cardInfo.author.name}</p>
+    <p>Publish Date : ${cardInfo.author.published_date}</p>
+
+    
+    `
+
+}
 // spinner loading 
 
     let loading = (isLoading) =>{
